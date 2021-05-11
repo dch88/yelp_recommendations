@@ -23,7 +23,7 @@ var requestOptions = {
 //const API_KEY = process.env.YELP_API_KEY || "abc123" // obtain your own api key and set via environment variable
 
 router.get('/form', function (req, res, next) {
-  res.render("stocks_form");
+  res.render("yelp_form");
 });
 
 router.post('/dashboard', function (req, res, next) {
@@ -45,9 +45,9 @@ router.post('/dashboard', function (req, res, next) {
        // res.render("stocks_dashboard", {symbol: symbol, data: JSON.stringify(data), latestClose: latestClose});
       })
     .catch(function(err){
-      console.log("STOCK DATA ERROR:", err)
+      console.log("ZIP DATA ERROR:", err)
       req.flash("danger", "OOPS, Please check your inputs and try again.")
-      res.redirect("/stocks/form")
+      res.redirect("/yelp/form")
     })
 });
 
