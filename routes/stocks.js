@@ -32,10 +32,10 @@ router.post('/dashboard', function (req, res, next) {
   console.log("Zip", symbol)
   location = ""
 
-  var requestUrl = "https://api.yelp.com/v3/businesses/search?location=20007" // using string interpolation here, but you could alternatively do concatenation with + operators
+  var requestUrl = "https://api.yelp.com/v3/businesses/search?location=" + symbol 
   console.log("REQUEST URL", requestUrl)
 
-  fetch(requestUrl, requestOptions)
+   fetch(requestUrl, requestOptions)
     .then(function(response) {
         return response.json()
     })
