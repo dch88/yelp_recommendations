@@ -4,29 +4,45 @@ var fetch = require('node-fetch');
 var express = require('express');
 var router = express.Router();
 
-const API_KEY = process.env.ALPHAVANTAGE_API_KEY || "abc123" // obtain your own api key and set via environment variable
+var myHeaders = new fetch.Headers();
 
-router.get('/form', function(req, res, next) {
+const API_KEY = process.env.YELP_API_KEY
+
+//console.log("API_KEY:", API_KEY) //Output to check API key syntax
+
+myHeaders.append("Authorization", "Bearer " + API_KEY);
+
+//console.log("API_KEY:", myHeaders) //Output to check API key syntax
+
+var requestOptions = {
+  method: 'GET',
+  headers: myHeaders,
+  redirect: 'follow'
+};
+
+//const API_KEY = process.env.YELP_API_KEY || "abc123" // obtain your own api key and set via environment variable
+
+router.get('/form', function (req, res, next) {
   res.render("stocks_form");
 });
 
-router.post('/dashboard', function(req, res, next) {
+router.post('/dashboard', function (req, res, next) {
   console.log("FORM DATA", req.body)
   var symbol = req.body.symbol || "OOPS"
-  console.log("STOCK SYMBOL", symbol)
+  console.log("Zip", symbol)
+  location = ""
 
-  var requestUrl = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${symbol}&apikey=${API_KEY}` // using string interpolation here, but you could alternatively do concatenation with + operators
+  var requestUrl = "https://api.yelp.com/v3/businesses/search?location=20007" // using string interpolation here, but you could alternatively do concatenation with + operators
   console.log("REQUEST URL", requestUrl)
 
-  fetch(requestUrl)
+  fetch(requestUrl, requestOptions)
     .then(function(response) {
         return response.json()
     })
     .then(function(data){
-        console.log("STOCK DATA SUCCESS", Object.keys(data))
-        var latestClose = Object.values(data["Time Series (Daily)"])[0]["5. adjusted close"]
-        req.flash("success", "Stock Data Request Success!")
-        res.render("stocks_dashboard", {symbol: symbol, data: JSON.stringify(data), latestClose: latestClose});
+        console.log("Zip DATA SUCCESS", Object.keys(data))
+        console.log(" DATA SUCCESS", data.businesses["0"])
+       // res.render("stocks_dashboard", {symbol: symbol, data: JSON.stringify(data), latestClose: latestClose});
       })
     .catch(function(err){
       console.log("STOCK DATA ERROR:", err)
