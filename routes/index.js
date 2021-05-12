@@ -7,16 +7,14 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET about page. */
-router.get('/about', function(req, res, next) {
-  res.render('about');
+router.get('/yelp_form', function(req, res, next) {
+  res.render('yelp_form');
 });
 
 /* GET hello page. */
-router.get('/hello', function(req, res, next) {
+router.get('/about', function(req, res, next) {
   console.log("URL PARAMS:", req.query)
-  var name = req.query.name || "World" // double pipes is an OR operator that allows us to use a default value if the url params are null / not specified
-  var message = "Hello, " + name
-  res.render('hello', { message: message });
+  res.render('about');
 });
 
 //...

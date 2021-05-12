@@ -47,7 +47,7 @@ router.post('/dashboard', function (req, res, next) {
     .catch(function(err){
       console.log("ZIP DATA ERROR:", err)
       req.flash("danger", "OOPS, Please check your inputs and try again.")
-      res.redirect("/yelp/form")
+      res.redirect("/yelp_form")
     })
 });
 
