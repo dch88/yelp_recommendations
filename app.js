@@ -11,7 +11,7 @@ var flash = require('express-flash-messages')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var stocksRouter = require('./routes/stocks')
+var yelpRouter = require('./routes/yelp')
 
 var SESSION_SECRET = process.env.SESSION_SECRET || "super secret"
 
@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   cookie: { maxAge: 60000},
   secret: SESSION_SECRET,
-  name: 'stocks-app-session',
+  name: 'yelp-app-session',
   resave: true,
   saveUninitialized: true
 }));
@@ -38,7 +38,7 @@ app.use(flash())
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/stocks', stocksRouter) // around line 29
+app.use('/yelp', yelpRouter) // around line 29
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
