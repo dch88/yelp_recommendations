@@ -44,9 +44,11 @@ router.post('/dashboard', function (req, res, next) {
         console.log("Top Business", data.businesses["0"].name)
         var recommendation = data.businesses["0"].name
         var location = data.businesses["0"].location.display_address["0"] + ", " + data.businesses["0"].location.display_address["1"] 
-       
         console.log("Address ....", location)
-        res.render("yelp_output", {symbol: symbol, data: JSON.stringify(data), recommendation, location});
+        var parsedLocation = "https://www.google.com/maps/place/" + location.split(' ').join('+');
+        console.log("Parsed Address ....", parsedLocation)
+
+        res.render("yelp_output", {symbol: symbol, data: JSON.stringify(data), recommendation, location,parsedLocation});
       })
     .catch(function(err){
       console.log("ZIP DATA ERROR:", err)
