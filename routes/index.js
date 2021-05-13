@@ -6,15 +6,15 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Find Top Restaurants in Your Area' });
 });
 
-/* GET about page. */
+/* GET form page. */
 router.get('/yelp_form', function(req, res, next) {
   res.render('yelp_form');
 });
 
-/* GET hello page. */
-router.get('/about', function(req, res, next) {
+/* GET otherlinks page. */
+router.get('/otherlinks', function(req, res, next) {
   console.log("URL PARAMS:", req.query)
-  res.render('about');
+  res.render('otherlinks');
 });
 
 //...
