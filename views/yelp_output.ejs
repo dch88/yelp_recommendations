@@ -1,6 +1,6 @@
-<h2>Stocks Dashboard (<%= symbol %>)</h2>
+<h2>Yelp Recommendations for <%= symbol %></h2>
+<h2><%= recommendation %> </h2>
 
-<p class="lead">Latest Close: $<%= latestClose %> </p>
 
 <div id="chart-container" height="700px">
 </div>
@@ -8,14 +8,14 @@
 <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 <script type="text/javascript">
 
-    console.log("STOCKS DASHBOARD...")
+    console.log("Yelp Output test...")
 
     // use data from the router!
     var symbol = '<%- symbol %>'
-    var stockData = JSON.parse('<%- data %>')
-    console.log(stockData)
+    var yelp = JSON.parse('<%- data %>')
+    console.log("New Page Recomendation: ", recommendation)
 
-    var tsd = stockData["Time Series (Daily)"]
+ /*    var tsd = stockData["Time Series (Daily)"]
     var dates = Object.keys(tsd)
     var dailyPrices = Object.values(tsd)
     var closingPrices = dailyPrices.map(obj => obj["5. adjusted close"])
@@ -32,6 +32,5 @@
         height: 600
     }
     Plotly.newPlot("chart-container", data, layout, {responsive: true})
-
+ */
 </script>
-
