@@ -42,10 +42,11 @@ router.post('/dashboard', function (req, res, next) {
     .then(function(data){
         console.log("Zip DATA SUCCESS", Object.keys(data))
         console.log("Top Business", data.businesses["0"].name)
-        var recommendation = Object.values(data.businesses["0"].name)
-        console.log("Total", data.businesses["0"])
-
-        res.render("yelp_output", {symbol: symbol, data: JSON.stringify(data), recommendation});
+        var recommendation = data.businesses["0"].name
+        var location = data.businesses["0"].location.display_address["0"] + ", " + data.businesses["0"].location.display_address["1"] 
+       
+        console.log("Address ....", location)
+        res.render("yelp_output", {symbol: symbol, data: JSON.stringify(data), recommendation, location});
       })
     .catch(function(err){
       console.log("ZIP DATA ERROR:", err)
